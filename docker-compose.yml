@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      # Ignora o volume montado para .venv para não misturar pacotes do host com os do container
+      - /app/.venv
+      - /app/venv
+    env_file:
+      - .env
+    environment:
+      - PYTHONIOENCODING=utf-8
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    command: python src/evaluate.py
